@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Info Windows</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+      
+      var spots = [
+        ['家', 24.789824, 120.999227, '2017~', 'https://lh3.google.com/u/0/d/1oacK96RUVO8jP5tOklGCyPnmygg8FHdsRQ=w3000-h5331-iv1'],
+        ['柴山', 22.641291, 120.261843, '2015/02/01', 'https://lh3.google.com/u/0/d/1Da4kTTm8LSKheocjS0BGw_7VDNH0uD3DBw=w320-h200-k-iv1'],
+        ['奈良', 34.685047, 135.839936, '2016/1/26', 'https://lh3.google.com/u/0/d/1MyYfx2bp8G20qpokzBzegeEOEF8pCbjs6A=w320-h200-k-iv1'],
+        ['滑雪', 35.212086, 135.889481, '2016/1/27', 'https://lh3.google.com/u/0/d/1oCXfoDwj5rbiGbVbViqwOTo3wiBUp9CwBA=w320-h200-k-iv1'],
+        ['京都', 35.013594, 135.678178, '2016/1/28', 'https://lh3.google.com/u/0/d/1SVMOfr96kz3hjrZO3IxYqTAtNh3gS1nJkA=w320-h200-k-iv1'],
+        ['清水寺', 34.994450, 135.785600, '2016/1/29', 'https://lh3.google.com/u/0/d/1F7uW7iIRhM-kRh4EhKgsbS240jR-NTteBg=w320-h200-k-iv1'],
+        ['環球影城', 34.668081, 135.431733, '2016/1/30', 'https://lh3.google.com/u/0/d/1nuzsgCV3e-u1-R_t2_5YNIr7Qb1JGXOg6Q=w320-h200-k-iv1'],
+        ['大阪民宿QQ', 34.603256, 135.533997, '2016/1/31', 'https://lh3.google.com/u/0/d/1o0g85pfqV5oCgRdIgQRSXJk6Lu6z7NsOzQ=w320-h200-k-iv1'],
+        ['蘭潭', 23.465969, 120.480836, '2016/2/28', 'https://lh3.google.com/u/0/d/1X28Aju9Qhk5Ab6iDzGMTnY-igyRO8vsuyw=w320-h200-k-iv1'],
+        ['紅毛港', 22.582708, 120.298553, '2016/7/24', 'https://lh3.google.com/u/0/d/1hGdz3CCRecRR3yOtkIdXTS5W_pP5xwd6Tg=w320-h200-k-iv1'],
+        ['毓珊發功XD', 22.326467, 120.353242, '2016/7/27', 'https://lh3.google.com/u/0/d/1bPr6hbBtF9cjycRd17GJc_T32isJiMGbTA=w320-h200-k-iv1'],
+        ['小琉球', 22.342614, 120.362336, '2016/7/28', 'https://lh3.google.com/u/0/d/1gvv22gTzMfW9yG9Fezgm0g-sx_l4hU_4aA=w320-h200-k-iv1'],
+        ['中山大學', 22.626086, 120.265747, '2016/8/23', 'https://lh3.google.com/u/0/d/19lugBUC2cOuZz3yy2ZPSJaq41MrNYpgarg=w320-h200-k-iv1'],
+        ['九份', 25.108717, 121.843558, '2016/10/8', 'https://lh3.google.com/u/0/d/1yMZIhviGJuHdKrcXEUGk2lO4Ju8SphIUGg=w320-h200-k-iv1'],
+        ['金瓜石', 25.117694, 121.861583, '2016/10/8', 'https://lh3.google.com/u/0/d/1Y-IwGuRRIQJTMtqi0OAX1yjM30d1K68JyA=w320-h200-k-iv1'],
+        ['湖口老街', 24.878139, 121.058450, '2016/10/15', 'https://lh3.google.com/u/0/d/1KGuBJYRn_TEv39v5-lENkR9qvngmuoQPeA=w320-h200-k-iv1'],
+        ['士林官邸', 25.093400, 121.530869, '2016/11/6', 'https://lh3.google.com/u/0/d/1irb7nePc8Pmvau3zvl2xiqbxYGvotj__2w=w320-h200-k-iv1'],
+        ['新社花海', 24.200822, 120.813622, '2016/11/19', 'https://lh3.google.com/u/0/d/1bZsGzckPOTibnGiGnb5TFJ58-nMwiEY72A=w320-h200-k-iv1'],
+        ['軍艦岩', 25.127300, 121.518700, '2016/11/26', 'https://lh3.google.com/u/0/d/12EUapJ0C4SGBamav41QPDwY_tBK0fE40bQ=w320-h200-k-iv3'],
+        ['新埔', 24.840800, 121.076700, '2016/12/25', 'https://lh3.google.com/u/0/d/1XdbaL--pgIz8s2B4X28VPjgMqmRu8qhVyA=w320-h200-k-iv3'],
+        ['101跨年', 25.038806, 121.565389, '2016/12/31', 'https://lh3.google.com/u/0/d/1r6b8vJVIaTtHZJHwWGEhYKe_aZDf8-mOzQ=w320-h200-k-iv3'],
+        ['三峽祖師廟', 24.933661, 121.370431, '2017/1/1', 'https://lh3.google.com/u/0/d/1kqPY2dIStjVpKg1jXNiJQBfbrOcjfEmN9g=w320-h200-k-iv1'],
+        ['華山看展覽', 25.044925, 121.529053, '2017/1/31', 'https://lh3.google.com/u/0/d/1uasEwK6JmxZ96RBtcnb-C5UEjovg2Sdyig=w320-h200-k-iv1'],
+        ['日月潭', 23.854947, 120.905517, '2017/2/25', 'https://lh3.google.com/u/0/d/1-dKit4xEHDNHJI1SPOsYBke7f-xsT3X5Yw=w320-h200-k-iv1'],
+        ['霧峰落羽松秘境', 24.016700, 120.687508, '2017/2/26', 'https://lh3.google.com/u/0/d/1RCLnxEQSXjgCiVgRBFLdjwyir1OQV0AixQ=w320-h200-k-iv1'],
+        ['漢克紅豆餅', 23.954600, 120.573500, '2017/2/26', 'https://lh3.google.com/u/0/d/1-31zc39eDpMN2UaWBjTzueYKXM8Oi-xbdg=w320-h200-k-iv1'],
+        ['猴探井', 23.908469, 120.631644, '2017/2/26', 'https://lh3.google.com/u/0/d/1wRK_CCNy0AV8xEOLlMpKoVgXrmNVkyrNgw=w320-h200-k-iv1'],
+        ['陽明山海芋', 25.177583, 121.537556, '2017/3/16', 'https://lh3.google.com/u/0/d/1h1xiiCF4oS3UonHTG5Egf-aVs0FTdHSgGQ=w320-h200-k-iv1'],
+        ['Coldplay!!', 25.010833, 121.218611, '2017/4/11', 'https://lh3.google.com/u/0/d/1vtjTaP6h-LyXZuXelCibTfhPvnLhvTVXGg=w320-h200-k-iv1'],
+        ['木柵動物園', 24.995175, 121.587242, '2017/4/15', 'https://lh3.google.com/u/0/d/15mbzGYsGkjpPyj5xmRokHwVO1HYlmiTb0w=w320-h200-k-iv1'],
+        ['內灣', 24.705167, 121.183000, '2017/5/7', 'https://lh3.google.com/u/0/d/1MoYI0KXMltfOpGxmUGVFa777bxlvcTpmIw=w320-h200-k-iv1'],
+        ['歌劇院', 24.160750, 120.641556, '2017/5/21', 'https://lh3.google.com/u/0/d/1lCzJdxTzDjBB_XIRbMy3wqxS6Yd6krgiiA=w320-h200-k-iv1'],
+        ['與宅宅玩貓', 25.106536, 121.522186, '2017/7/1', 'https://lh3.google.com/u/0/d/1YppZlrEdj0ANzeJnMPGv-sJbJ3_eBPXisA=w320-h200-k-iv1'],
+        ['北埔冷泉', 24.662806, 121.072617, '2017/7/23', 'https://lh3.google.com/u/0/d/1LS8MKnwgrJxJ28IYQQ_bdSWT3G5ImB1uzw=w320-h200-k-iv1'],
+        ['喝酒慶生', 22.664669, 120.306917, '2017/7/28', 'https://lh3.google.com/u/0/d/1TSQJlmsYD1nFSXIdTrw4HflvoWc7gpUe0w=w320-h200-k-iv1'],
+        ['關西', 24.789775, 121.178978, '2017/9/6', 'https://lh3.google.com/u/0/d/1RVacaOwupbu6NhHx5EPJ7OBD62ccYOYVag=w320-h200-k-iv1'],
+        ['郁珈~!', 25.032278, 121.489139, '2017/9/16', 'https://lh3.google.com/u/0/d/127sLKwzB-BoECpocN7x48gskgYBtV1pq1A=w320-h200-k-iv1'],
+        ['台北馬場町', 25.019047, 121.504294, '2017/10/22', 'https://lh3.google.com/u/0/d/1bO862Dz4726SeWYjkKWNnnliy7gkeLUW7Q=w320-h200-k-iv1'],
+        ['大坑爬山', 24.188600, 120.735900, '2017/11/5', 'https://lh3.google.com/u/0/d/1_I_w0210mNNwDejs2yQim_YbOKQTc2qMoA=w320-h200-k-iv1'],
+        ['王功採蚵', 23.968083, 120.328544, '2017/11/11', 'https://lh3.google.com/u/0/d/1kQUqGRS5rg_JI1e2QXG-K6ArXOX67vTCQw=w320-h200-k-iv1'],
+        ['扇形車庫', 24.085411, 120.540200, '2017/11/11', 'https://lh3.google.com/u/0/d/1jlYpPhiX8O1NVKpqcO2_6ceA4cXg-6dfvQ=w320-h200-k-iv1'],
+        ['新北耶誕城', 25.012803, 121.464264, '2017/12/2', 'https://lh3.google.com/u/0/d/1gbekORtBpsoZzI5NxKQ0myv1K5HSrhzYVw=w320-h200-k-iv1'],
+        ['故宮博物院', 25.100806, 121.549264, '2018/1/20', 'https://lh3.google.com/u/0/d/1YLmGDa2yJOASoISFWNJNMSLaIQJ6T4YN9w=w320-h200-k-iv1'],
+        ['秀巒村', 24.620889, 121.287492, '2018/1/27', 'https://lh3.google.com/u/0/d/1pzt4Di9GDY0-JqCVugBMLCZrn5_qIE57Gw=w320-h200-k-iv1'],
+        ['台中公園', 24.145561, 120.684608, '2018/3/3', 'https://lh3.google.com/u/0/d/1wSg3ZQq7_XIv3dCzuDc9DJGqw6rBqx0JEA=w320-h200-k-iv1'],
+        ['青青草原', 24.772000, 120.925767, '2018/3/11', 'https://lh3.google.com/u/0/d/1QZ0n--0kNFAD1Sz8m2JyAXCcXCPObnCL7w=w320-h200-k-iv1'],
+        ['巨埔農場', 24.84147, 121.127444, '2018/3/25', 'https://lh3.google.com/u/0/d/1ESH13pUuKBa2pB3xfC_1w4MHCujpaj6LnA=w320-h200-k-iv1'],
+        ['漁光島', 22.9798278, 120.1558444, '2018/4/5', 'https://lh3.google.com/u/0/d/1RLS03CE3jzibVU4BtVZ25pLRTxxRKbW5kQ=w320-h200-k-iv1'],
+        ['台中東區', 24.140463, 120.689795, '2018/4/8', 'https://lh3.google.com/u/0/d/1pe0xAogzJ7fIlbH-JyQY402FLAGsKWEugQ=w320-h200-k-iv1'],
+        ['台北士林', 25.0934472, 121.5238278, '2018/6/30', 'https://lh3.google.com/u/0/d/1fU7LMaFaXxPIqcdU93mV3tuLWUKpwLYCWQ=w320-h200-k-iv1'],
+      ];
+
+      function initMap() {
+        var centerSpot = {lat: spots[0][1], lng: spots[0][2]};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: centerSpot
+        });
+
+        setMarkers(map);
+      }
+
+      var activeInfoWindow;
+      function setMarkers(map) {
+        for (var i = 0; i < spots.length; i++) {
+          var spot = spots[i];
+          var marker = new google.maps.Marker({
+            position: {lat: spot[1], lng: spot[2]},
+            map: map,
+            title: spot[0]
+          });
+          
+          var content = '<img height="200" width="250" src="' + spot[4] + '"></img>';
+          var infowindow = new google.maps.InfoWindow();
+          google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow){ 
+              return function() {
+                  if (activeInfoWindow) { activeInfoWindow.close();}
+                  infowindow.setContent(content);
+                  infowindow.open(map, marker);
+                  activeInfoWindow = infowindow;
+              };
+          })(marker, content, infowindow)); 
+          
+        }
+      }
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQjN43_wmktb32F5t6RfbdoKqZPzR2XiI&callback=initMap">
+    </script>
+  </body>
+</html>
