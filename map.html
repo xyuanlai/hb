@@ -16,16 +16,34 @@
         margin: 0;
         padding: 0;
       }
+      .spot-img {
+        max-width: 400px;
+        max-height: 400px;
+      }
     </style>
   </head>
   <body>
     <div id="map"></div>
     <script>
-
-      
       var spots = [
-        ['家', 24.789824, 120.999227, '2017~', 'https://lh3.google.com/u/0/d/1oacK96RUVO8jP5tOklGCyPnmygg8FHdsRQ=w3000-h5331-iv1'],
+        ['家', 24.789824, 120.999227, '2017~', 'https://lh3.google.com/u/0/d/1y_2qUuNdIurAABFzwDCxOEjuD0TfF064Gg=w320-h200-k-iv1'],
         ['柴山', 22.641291, 120.261843, '2015/02/01', 'https://lh3.google.com/u/0/d/1Da4kTTm8LSKheocjS0BGw_7VDNH0uD3DBw=w320-h200-k-iv1'],
+        ['壽山動物園', 22.631901, 120.280312, '2015/2/28', 'https://lh3.google.com/u/0/d/1p1LA8XTcE3bud1lXVQ3mjLfbI3kQjHFBag=w320-h200-k-iv1'],
+        ['大坑櫻花巷', 24.196274, 120.784493, '2015/2/8', 'https://lh3.google.com/u/0/d/19t0LD944Tg5jg7B8a7XKtbsYT8tM0q1_Vg=w320-h200-k-iv1'],
+        ['茂林', 22.885960, 120.664261, '2015/2/13', 'https://lh3.google.com/u/0/d/1uZE5yEZGeh47cmdkeia1z4FR2yp08wkEiw=w320-h200-k-iv1'],
+        ['一個月!', 22.664125, 120.307846, '2015/2/28', 'https://lh3.google.com/u/0/d/1lbDdZIghvD9IQX3-VnnpNSBwcnvCPCjWjA=w320-h200-k-iv1'],
+        ['橋頭', 22.756176, 120.314186, '2015/3/28', 'https://lh3.google.com/u/0/d/1VShlieJ4lRgQXFyVr9YeRbJllObJ_T9pWw=w320-h200-k-iv1'],
+        ['地下聯盟', 22.626204, 120.265739, '2015/5/1', 'https://lh3.google.com/u/0/d/1COjsuOFIqdWIwvZe0FtdYj7HEopFb7J4dQ=w320-h200-k-iv1'],
+        ['奇美博物館', 22.936549, 120.228138, '2015/6/29', 'https://lh3.google.com/u/0/d/1ydokQrMxdkrEn9shYYe-UzcAp3u6A9QSDQ=w320-h200-k-iv1'],
+        ['鵝鑾鼻燈塔', 21.902565, 120.852651, '2015/7/19', 'https://lh3.google.com/u/0/d/1Prh5bZ0AKb-6pCGEA7PUkU3CY68dRTLFZw=w320-h200-k-iv1'],
+        ['佛光山', 22.760213, 120.445234, '2015/7/28', 'https://lh3.google.com/u/0/d/1IRrNf026AtludfVGALdK70LsEVqq2Dz6fA=w320-h200-k-iv1'],
+        ['台東', 22.758608, 121.140708, '2015/8/27', 'https://lh3.google.com/u/0/d/1eRlQ5eNFprojKTb1TQHFysFJ9WI4mBqHJQ=w320-h200-k-iv1'],
+        ['WISE', 22.627575, 120.264908, '2015/11/27', 'https://lh3.google.com/u/0/d/1XE3zsI8OODXkyXbLzukdAG9vAOz1i-mgkg=w320-h200-k-iv1'],
+        ['旗山孔子廟', 22.888878, 120.477836, '2015/12/8', 'https://lh3.google.com/u/0/d/1wG3MQmFW4NZ-yq0CEuxw9EiLmOzVUxbr7g=w320-h200-k-iv1'],
+        ['哩啾婚禮', 24.804667, 120.976189, '2015/12/12', 'https://lh3.google.com/u/0/d/1jTANDVpWDegqNKvoS74DEQXDvlz0CItU0g=w320-h200-k-iv1'],
+        ['駁二', 22.622933, 120.276733, '2015/12/25', 'https://lh3.google.com/u/0/d/1FqMkYxHpN3_kp9sd3fr5Pw19Q0IcM4K38w=w320-h200-k-iv1'],
+        ['老樹公園', 24.181764, 120.662658, '2016/1/25', 'https://lh3.google.com/u/0/d/14GSEZbsBdA_TdWhXAx0IPYAkiMtEZ0oU7A=w320-h200-k-iv1'],
+        ['桃園機場', 25.078147, 121.240028, '2016/1/26', 'https://lh3.google.com/u/0/d/1vrZk0gW05U41FdtKrJqzmpF6GoRrEWEmsg=w320-h200-k-iv1'],
         ['奈良', 34.685047, 135.839936, '2016/1/26', 'https://lh3.google.com/u/0/d/1MyYfx2bp8G20qpokzBzegeEOEF8pCbjs6A=w320-h200-k-iv1'],
         ['滑雪', 35.212086, 135.889481, '2016/1/27', 'https://lh3.google.com/u/0/d/1oCXfoDwj5rbiGbVbViqwOTo3wiBUp9CwBA=w320-h200-k-iv1'],
         ['京都', 35.013594, 135.678178, '2016/1/28', 'https://lh3.google.com/u/0/d/1SVMOfr96kz3hjrZO3IxYqTAtNh3gS1nJkA=w320-h200-k-iv1'],
@@ -74,6 +92,19 @@
         ['漁光島', 22.9798278, 120.1558444, '2018/4/5', 'https://lh3.google.com/u/0/d/1RLS03CE3jzibVU4BtVZ25pLRTxxRKbW5kQ=w320-h200-k-iv1'],
         ['台中東區', 24.140463, 120.689795, '2018/4/8', 'https://lh3.google.com/u/0/d/1pe0xAogzJ7fIlbH-JyQY402FLAGsKWEugQ=w320-h200-k-iv1'],
         ['台北士林', 25.0934472, 121.5238278, '2018/6/30', 'https://lh3.google.com/u/0/d/1fU7LMaFaXxPIqcdU93mV3tuLWUKpwLYCWQ=w320-h200-k-iv1'],
+        ['清泉崗機場', 24.252639, 120.598778, '2018/7/26', 'https://lh3.google.com/u/0/d/15QVphgNfu91_6Y5xWcv7ukhG4zwl_U6PQw=w320-h200-k-iv1'],
+        ['澳門機場', 22.190081, 113.543372, '2018/7/26', 'https://lh3.google.com/u/0/d/1uZ0fq6vnTJoHr2G3MAtFl6mrlRX-JFZyvQ=w320-h200-k-iv1'],
+        ['新葡京前街景', 22.190081, 113.543372, '2018/7/26', 'https://lh3.google.com/u/0/d/1ZlCKeQ8SeF1aRqQdbTRj7-MAEQ3lNVoquw=w320-h200-k-iv1'],
+        ['澳門漁人碼頭', 22.193311, 113.555519, '2018/7/26', 'https://lh3.google.com/u/0/d/1PsRcugOdXgo11k68X1vmmWVE-oyhyT4WQA=w320-h200-k-iv1'],
+        ['白鴿巢公園', 22.201150, 113.539475, '2018/7/27', 'https://lh3.google.com/u/0/d/1CD_07dSAaup5RA1qDW3yWUTgCMY1Nk9TKw=w320-h200-k-iv1'],
+        ['戀愛巷', 22.197103, 113.540397, '2018/7/27', 'https://lh3.google.com/u/0/d/1Le4AcnkWBc7aBPw5LXFiBAdBFabtHLTXlw=w320-h200-k-iv1'],
+        ['大三巴', 22.197283, 113.540764, '2018/7/27', 'https://lh3.google.com/u/0/d/1x2vvgMmqJQlHeiXMLWU08wZMSeROAZQMBA=w320-h200-k-iv1'],
+        ['水舞間', 22.149569, 113.568672, '2018/7/27', 'https://lh3.google.com/u/0/d/16G5hhNLzAWHmOfcuwOLuuBpVQSfndUoRqA=w320-h200-k-iv1'],
+        ['官也街', 22.154000, 113.556611, '2018/7/28', 'https://lh3.google.com/u/0/d/1JYTVmajjGa9Bb8UJLEQf3RmnBoo6S93kww=w320-h200-k-iv1'],
+        ['龍環葡韻', 22.1541417, 113.5603639, '2018/7/28', 'https://lh3.google.com/u/0/d/1AAK9VwFCNpzRCNCI7Oh_1xZUj1fW6yFQkg=w320-h200-k-iv1'],
+        ['威尼斯人', 22.143639, 113.561694, '2018/7/28', 'https://lh3.google.com/u/0/d/1bXXpMMvdIR5fNAvOjCUcHZEJmhC9e-BFdg=w320-h200-k-iv1'],
+        ['永利皇宮噴水池', 22.147900, 113.571500, '2018/7/28', 'https://lh3.google.com/u/0/d/118nmqVwy9udQu2Gkrnp-zsK12_1flQPnng=w320-h200-k-iv1'],
+        ['Hard Rock Cafe', 22.147778, 113.566278, '2018/7/28', 'https://lh3.google.com/u/0/d/1WkJTjEYWDOOLkHDz46-of3-jDd5RWa_bcw=w320-h200-k-iv1'],
       ];
 
       function initMap() {
@@ -96,7 +127,7 @@
             title: spot[0]
           });
           
-          var content = '<img height="200" width="250" src="' + spot[4] + '"></img>';
+          var content = '<img class="spot-img" src="' + spot[4] + '"></img>';
           var infowindow = new google.maps.InfoWindow();
           google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow){ 
               return function() {
